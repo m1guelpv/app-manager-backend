@@ -29,7 +29,7 @@ public class SecurityFilter extends OncePerRequestFilter {
         String token = recoverToken(request);
 
         if (StringUtils.hasText(token)) {
-            String email = tokenService.getEmailFromToken(token); // Retrieve email from token
+            String email = tokenService.validateToken(token);
             if (StringUtils.hasText(email)) {
                 Optional<User> user = userRepository.findByEmail(email);
                 user.ifPresent(u -> {
