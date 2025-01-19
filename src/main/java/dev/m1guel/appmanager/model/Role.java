@@ -1,32 +1,23 @@
 package dev.m1guel.appmanager.model;
 
-import jakarta.persistence.*;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.List;
-import java.util.UUID;
 
-@Data
-@Entity
-@Table(name = "roles")
-public class Role implements GrantedAuthority {
+@Getter
+@AllArgsConstructor
+public enum Role {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(updatable = false, nullable = false, unique = true)
-    private UUID id;
+    USER("ROLE_USER"),
+    ADMIN("ROLE_ADMIN");
 
-    @Column(unique = true, nullable = false)
-    private String name;
+    private final String roleName;
 
-    @ElementCollection
-    @Column(columnDefinition = "TEXT[]")
-    private List<String> permissions;
-
-    @Override
-    public String getAuthority() {
-        return name;
+    public List<GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(roleName));
     }
 
 }

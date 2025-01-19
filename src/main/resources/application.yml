@@ -19,3 +19,8 @@ spring:
   data:
     jdbc:
       dialect: postgresql
+
+api:
+  security:
+    token:
+      secret: ${SECRET_TOKEN}
