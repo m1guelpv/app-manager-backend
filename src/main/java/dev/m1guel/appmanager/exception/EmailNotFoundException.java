@@ -1,8 +1,8 @@
 package dev.m1guel.appmanager.exception;
 
-public class UserNotFoundException extends RuntimeException {
+public class EmailNotFoundException extends RuntimeException {
 
-    public UserNotFoundException(String email) {
+    public EmailNotFoundException(String email) {
         super(String.format("User with email '%s' not found", email));
     }
 

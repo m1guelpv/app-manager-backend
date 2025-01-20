@@ -50,8 +50,8 @@ public class GlobalExceptionHandler {
         );
     }
 
-    @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<ResponseDto<String>> handleUserNotFoundException(UserNotFoundException ex) {
+    @ExceptionHandler(EmailNotFoundException.class)
+    public ResponseEntity<ResponseDto<String>> handleUserNotFoundException(EmailNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
                 new ResponseDto<>(false, ex.getMessage(), null)
         );

@@ -5,7 +5,7 @@ import dev.m1guel.appmanager.dto.RegisterDto;
 import dev.m1guel.appmanager.dto.ResponseDto;
 import dev.m1guel.appmanager.exception.EmailAlreadyInUseException;
 import dev.m1guel.appmanager.exception.InvalidPasswordException;
-import dev.m1guel.appmanager.exception.UserNotFoundException;
+import dev.m1guel.appmanager.exception.EmailNotFoundException;
 import dev.m1guel.appmanager.model.Role;
 import dev.m1guel.appmanager.model.User;
 import dev.m1guel.appmanager.repository.UserRepository;
@@ -31,7 +31,7 @@ public class AuthService {
 
     public ResponseEntity<ResponseDto<String>> login(LoginDto loginDto, HttpServletResponse response) {
         if (!userRepository.existsByEmail(loginDto.getEmail())) {
-            throw new UserNotFoundException(loginDto.getEmail());
+            throw new EmailNotFoundException(loginDto.getEmail());
         }
         try {
             Authentication authentication = authenticationManager.authenticate(
